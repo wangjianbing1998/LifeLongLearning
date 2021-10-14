@@ -10,7 +10,7 @@ def reverseStepStr(inputStr: str, n: int) -> str:
     >>> reverseStepStr("01234567",2)
     '7531'
     '''
-    pass
+    return inputStr[-1::-n]
 
 
 def deleteKeyOfMap(map: dict, key: str) -> Dict:
@@ -22,7 +22,8 @@ def deleteKeyOfMap(map: dict, key: str) -> Dict:
     >>> deleteKeyOfMap({"a":1,"b":2,"c":3},"b")
     {'a': 1, 'c': 3}
     '''
-    pass
+    map.pop(key)
+    return map
 
 
 def convertStrList2CharList(inputStr: List) -> List:
@@ -34,7 +35,8 @@ def convertStrList2CharList(inputStr: List) -> List:
     >>> convertStrList2CharList(["Hello","World","Name"])
     ['r', 'm', 'a', 'o', 'd', 'N', 'e', 'l', 'H', 'W']
     """
-    pass
+    charlist = [list(s) for s in inputStr]
+    return list(set([c for a in charlist for c in a]))
 
 
 def getnNumberGenerator(n: int):
@@ -46,4 +48,5 @@ def getnNumberGenerator(n: int):
     >>> print([x for x in generator])
     [0, 1, 2]
     """
-    pass
+    g = (x for x in range(n))
+    return g
