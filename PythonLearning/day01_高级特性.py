@@ -1,6 +1,5 @@
 from typing import Dict, List
 
-
 def reverseStepStr(inputStr: str, n: int) -> str:
     '''
     请使用切片实现字符串逆序，且跳n格输出
@@ -10,19 +9,23 @@ def reverseStepStr(inputStr: str, n: int) -> str:
     >>> reverseStepStr("01234567",2)
     '7531'
     '''
-    return inputStr[-1::-n]
+    return inputStr[::-n]
+
 
 
 def deleteKeyOfMap(map: dict, key: str) -> Dict:
     '''
     从一个map中删除指定的key键值对，要求在原map上做操作
+    这一题你回答的非常好，代码的执行效率也非常高，给你点一个赞赞
+    我本来想考察的点是在边遍历map的时候边修改key，所以使用了list()将key都取出来建立了一个缓存，这样为了方便key值得修改和删除
     :param map:
     :param key:
     :return:
     >>> deleteKeyOfMap({"a":1,"b":2,"c":3},"b")
     {'a': 1, 'c': 3}
     '''
-    map.pop(key)
+    for k in list(map.keys()):
+        map.pop(k)
     return map
 
 
@@ -35,8 +38,8 @@ def convertStrList2CharList(inputStr: List) -> List:
     >>> convertStrList2CharList(["Hello","World","Name"])
     ['r', 'm', 'a', 'o', 'd', 'N', 'e', 'l', 'H', 'W']
     """
-    charlist = [list(s) for s in inputStr]
-    return list(set([c for a in charlist for c in a]))
+    return list(set([c for str in inputStr for c in str]))
+
 
 
 def getnNumberGenerator(n: int):
@@ -48,5 +51,5 @@ def getnNumberGenerator(n: int):
     >>> print([x for x in generator])
     [0, 1, 2]
     """
-    g = (x for x in range(n))
-    return g
+    return (x for x in range(n))
+
