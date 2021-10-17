@@ -1,4 +1,7 @@
+from functools import reduce
 from typing import List
+from time import time
+import functools
 
 
 class Item:
@@ -22,9 +25,10 @@ def filterMapReduce(items: List[Item]) -> int:
     207
     :return:
     """
-    pass
+    return reduce(lambda x, y: x + y, map(lambda x: int(x.count), filter(lambda x: x.id > 2, items)))
 
-def sortedFunction(items:List[Item]) -> List[int]:
+
+def sortedFunction(items: List[Item]) -> List[int]:
     """
     给输入的items进行排序，按照id逆序排序
     :param items:
@@ -32,15 +36,21 @@ def sortedFunction(items:List[Item]) -> List[int]:
     >>> sortedFunction([Item(str(i+10),str(i+100),i) for i in range(5)])
     [4, 3, 2, 1, 0]
     """
-    pass
+    return sorted([int(x.id) for x in items], reverse=True)
 
 
-def decoratorDemo():
+def decoratorDemo(func):
     """
     实现自动给一个函数统计执行时间的方法
     :return:
     """
-    pass
+    def wrapper(*args, **kw):
+        start = time()
+        func_return = func(*args, **kw)
+        end = time()
+        print(f"{func.__name__}() run time: {end - start}s")
+        return func_return
+    return wrapper
 
 @decoratorDemo
 def testDecoratorDemo():
@@ -59,5 +69,5 @@ def testPartitionDemo(f):
     12
     :return:
     """
-    pass
+    return functools.partial(f,10)
 
